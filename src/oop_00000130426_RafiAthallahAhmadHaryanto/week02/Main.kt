@@ -18,11 +18,22 @@ fun main() {
         println("ERROR: Pendaftaran dibatalkan. NIM harus 5 karakter!")
         // Program berhenti di sini untuk mahasiswa ini, tidak membuat objek
     }else {
-        print("Masukan Jurusan: ")
-        val major = scanner.nextLine()
+        print("Pilih jalur (1. Reguler, 2. Umum): ")
+        val type = scanner.nextInt()
+        scanner.nextLine() //Consume newLine
 
-        //Instansiasi Objek karena data sudah aman
-        val s1 = Student(name, nim, major)
-        println("Status: Pendaftaran Selesai.")
+        if(type == 1) {
+            print("Masukan Jurusan: ")
+            val major = scanner.nextLine()
+            // Memanggil Primary Constructor
+            val s1 = Student(name, nim, major)
+            println("Terdaftar di: ${s1.major} dengan GPA awal ${s1.gpa}")
+        }else if(type == 2) {
+            // Memanggil Secondary Constructor, jurusan otomatis "Non-Matriculated"
+            val s2 = Student(name, nim)
+            println("Terdaftar di: ${s2.major} dengan GPA awal ${s2.gpa}")
+        }else {
+            println("Pilihan ngawur, pendaftaran batal!")
+        }
     }
 }
